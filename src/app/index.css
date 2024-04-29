@@ -1,3 +1,7 @@
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap");
+
 * {
   padding: 0%;
   margin: 0%;
@@ -17,11 +21,30 @@ h2 {
 }
 
 p {
-  font-family: "Lato", serif;
+  font-family: "Open Sans", serif;
   letter-spacing: 1.3px;
   font-size: large;
   text-align: justify;
   margin: 0 5%;
+}
+
+.menu,
+.close {
+  position: fixed;
+  right: 1%;
+  color: #fff;
+  cursor: pointer;
+  font-size: 2.4rem;
+}
+
+.nav-cont {
+  width: 100%;
+  background-color: #0f2c49;
+  display: inline-flex;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+  padding: 2rem;
 }
 
 .logo {
@@ -34,37 +57,27 @@ p {
 }
 
 a {
+  font-family: "Montserrat", serif;
   text-decoration: none;
+  text-align: center;
+  color: #fff;
 }
 
 .logo a {
-  font-family: "Montserrat", serif;
-  letter-spacing: 0.15rem;
-  color: #fff;
   font-weight: 700;
+  text-align: center;
+  padding: 0;
+  margin: 0 0.4rem;
+  letter-spacing: 1.3px;
   font-size: larger;
-  margin: 0 0.8rem;
 }
 
-.logo a:hover, .menu:hover, .close:hover {
+.logo a:hover,
+.menu:hover,
+.close:hover {
   color: #fa991c;
   transform: translateY(-8%);
-  transition: .7s cubic-bezier(0.23, 1, 0.320, 1);
-}
-
-.menu, .close {
-  position: fixed;
-  right: 1%;
-  color: #fff;
-  font-size: 2.4rem;
-}
-
-.nav-cont {
-  background-color: #032539;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 2rem;
+  transition: 0.7s cubic-bezier(0.23, 1, 0.32, 1);
 }
 
 nav {
@@ -75,9 +88,10 @@ nav {
 
 nav a {
   font-size: large;
-  color: #032539;
+  color: #fff;
   font-family: "Montserrat", serif;
   font-weight: bold;
+  text-transform: uppercase;
   margin: 0 0.5rem;
   letter-spacing: 1.3px;
   transition: 0.75s cubic-bezier(0.23, 1, 0.32, 1);
@@ -85,17 +99,17 @@ nav a {
 
 .nav-cont nav a.active {
   color: #fa991c;
-  border-bottom: .1px solid #fa991c;
+  border-bottom: 0.1px solid #fa991c;
 }
 
 nav a:hover {
   transform: translateY(-0.5rem);
-  color: #1c768f;
+  color: #f35d22;
 }
 
-@media (max-width: 1040px) {
+@media (max-width: 880px) {
   nav {
-    background-color: #032539;
+    background-color: #0f2c49;
     display: flex;
     flex-direction: column;
     align-items: center;

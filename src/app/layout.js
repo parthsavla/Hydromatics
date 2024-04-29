@@ -1,4 +1,5 @@
-import Navbar from "./page/navbar/Navbar";
+import Footer from "./Footer";
+import Navbar from "./Navbar";
 
 export const metadata = {
   title: "Hydromatics Limited Kenya",
@@ -8,9 +9,13 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
+      <head>
+        <link rel="icon" type="image/x-icon" href="/images/favicon.ico" />
+      </head>
       <body>
         <Navbar />
         <main>{children}</main>
+        <Footer />
       </body>
     </html>
   );
