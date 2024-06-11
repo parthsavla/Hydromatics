@@ -10,7 +10,7 @@ import "./index.css";
 export default function Navbar() {
   const [showMenu, setShowMenu] = useState(false);
   const [isMobileView, setIsMobileView] = useState(false);
-  const router = useRouter(); // Use useRouter hook to access current route information
+  const router = useRouter();
 
   useEffect(() => {
     const handleResize = () => {
@@ -32,7 +32,7 @@ export default function Navbar() {
   };
 
   const isActive = (path) => {
-    return router.pathname === path; // Use router.pathname to check active route
+    return router.pathname === path;
   };
 
   const handleCloseMenu = () => {
@@ -65,7 +65,7 @@ export default function Navbar() {
           </Link>
 
           <Link
-            href="/about"
+            href="/#about"
             className={isActive("/about") ? "active" : ""}
             onClick={handleCloseMenu}
           >
@@ -73,23 +73,7 @@ export default function Navbar() {
           </Link>
 
           <Link
-            href="/brands"
-            className={isActive("/brands") ? "active" : ""}
-            onClick={handleCloseMenu}
-          >
-            Brands
-          </Link>
-
-          <Link
-            href="/products"
-            className={isActive("/products") ? "active" : ""}
-            onClick={handleCloseMenu}
-          >
-            Products
-          </Link>
-
-          <Link
-            href="/contact"
+            href="/#contacts"
             className={isActive("/contact") ? "active" : ""}
             onClick={handleCloseMenu}
           >
