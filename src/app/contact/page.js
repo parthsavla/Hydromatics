@@ -37,6 +37,13 @@ export default function Page() {
     },
   ];
 
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    subject: '',
+    message: '',
+  });
+
   const [focus, setFocus] = useState({
     name: false,
     email: false,
@@ -49,14 +56,56 @@ export default function Page() {
   };
 
   const handleBlur = (field) => {
-    setFocus({ ...focus, [field]: false });
+    if (formData[field] === '')
+    {
+      setFocus({ ...focus, [field]: false });
+    }
   };
 
-  const handleSubmit = (e) => {
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-  }
+    try
+    {
+      const res = await fetch('/api/send-email', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
 
+      const result = await res.json();
+      if (result.success)
+      {
+        alert('Email sent successfully');
+        setFormData({
+          name: '',
+          email: '',
+          subject: '',
+          message: '',
+        });
+        // Reset focus state
+        setFocus({
+          name: false,
+          email: false,
+          subject: false,
+          message: false,
+        });
+      } else
+      {
+        alert('Failed to send email');
+      }
+    } catch (error)
+    {
+      console.error('Error:', error);
+      alert('Error sending email');
+    }
+  };
   return (
     <div className="contact-cont">
       <div className="heading">
@@ -96,48 +145,56 @@ export default function Page() {
           </div>
         </div>
 
-        <form className="contact-form">
+        <form className="contact-form" onSubmit={handleSubmit}>
           <h2>WE REPLY FASTER ON EMAIL</h2>
-          <div className={`form-group ${focus.name ? "focused" : ""}`}>
+          <div className={`form-group ${focus.name ? 'focused' : ''}`}>
             <label htmlFor="name">Name</label>
             <input
               type="text"
               id="name"
               name="name"
-              onFocus={() => handleFocus("name")}
-              onBlur={() => handleBlur("name")}
+              value={formData.name}
+              onFocus={() => handleFocus('name')}
+              onBlur={() => handleBlur('name')}
+              onChange={handleChange}
             />
           </div>
-          <div className={`form-group ${focus.email ? "focused" : ""}`}>
+          <div className={`form-group ${focus.email ? 'focused' : ''}`}>
             <label htmlFor="email">Email</label>
             <input
               type="email"
               id="email"
               name="email"
-              onFocus={() => handleFocus("email")}
-              onBlur={() => handleBlur("email")}
+              value={formData.email}
+              onFocus={() => handleFocus('email')}
+              onBlur={() => handleBlur('email')}
+              onChange={handleChange}
             />
           </div>
-          <div className={`form-group ${focus.subject ? "focused" : ""}`}>
+          <div className={`form-group ${focus.subject ? 'focused' : ''}`}>
             <label htmlFor="subject">Subject</label>
             <input
               type="text"
               id="subject"
               name="subject"
-              onFocus={() => handleFocus("subject")}
-              onBlur={() => handleBlur("subject")}
+              value={formData.subject}
+              onFocus={() => handleFocus('subject')}
+              onBlur={() => handleBlur('subject')}
+              onChange={handleChange}
             />
           </div>
-          <div className={`form-group ${focus.message ? "focused" : ""}`}>
+          <div className={`form-group ${focus.message ? 'focused' : ''}`}>
             <label htmlFor="message">Message</label>
             <textarea
               id="message"
               name="message"
-              onFocus={() => handleFocus("message")}
-              onBlur={() => handleBlur("message")}
+              value={formData.message}
+              onFocus={() => handleFocus('message')}
+              onBlur={() => handleBlur('message')}
+              onChange={handleChange}
             ></textarea>
           </div>
-          <button type="submit" onClick={(e) => handleSubmit(e)}>Submit</button>
+          <button type="submit">Submit</button>
         </form>
       </main>
     </div>
